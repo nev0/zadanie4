@@ -7,6 +7,7 @@ $password = $_POST['password'];
 $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
 $result = mysqli_query($connection, $query);
 if (mysqli_num_rows($result) == 1) {
+    $hashed_password = hash('sha512', $password);
     $row = mysqli_fetch_assoc($result);
     $user = array(
         'id' => $row['id'],
